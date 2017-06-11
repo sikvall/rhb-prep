@@ -14,7 +14,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{float}
 
-\raggedbottom
+%\raggedbottom
 
 \begin{document}
 \title{Radiohandbok för Preppers}
@@ -74,7 +74,7 @@ f = \frac{300}{\lambda}
 \lambda = \frac{300}{f}
 \end{equation}
 
-Här betecknar $f$ frekvensen i MHz och $\lambda$ våglängden i meter.
+Här betecknar $f$ frekvensen i MHz och $\lambda$ (lambda) våglängden i meter.
 
 \begin{table}[H]
 	\begin{tabular}{llrr}
@@ -94,6 +94,96 @@ Här betecknar $f$ frekvensen i MHz och $\lambda$ våglängden i meter.
 Tabellen \ref{tab:frekvens-vaglangd} är de generiska benämningar på frekvensbanden som internationella teleunionen (ITU) har fastslagit. Det finns traditionellt andra benämningar också som vi inte kommer gå in på i detalj men rundradiobanden för lång- mellan- och kortvåg följer inte detta slaviskt och för amatörradion brukar 160 m bandet (1\,800--2\,000 kHz) räknas som kortvåg fast det i strikt mening är mellanvåg eller gränsvåg som området mellan 1--3 MHz kallas i marina sammanhang.
 
 \section{Effekt och räckvidd}
+
+En radios effekt mäts oftast i watt i lekmannamässiga sammanhang medan i professionella sammanhang så använder man decibel. Decibel är dock inget effektmått i sig, det beskriver egentligen skillnaden mellan två effekter men när man talar om en radios effekt används ibland enheten dBm som betyder antal decibel från 1 milliwatt (mW).
+
+\subsection{Watt och dBm}
+
+Om en sändare har 1 mW (milliwatt) uteffekt sägs den ha 0 dBm. Om den har 1 W uteffekt är det 30 dBm och om den har 10 W uteffekt är det 40 dBm.
+
+Varför vi gärna använder dBm har att göra med att det blir lättare att beräkna hur långt en radiosignal kommer om vi har dessa siffror. 
+
+Att räkna om från watt till dBm görs med följande ekvation:
+
+\begin{equation}
+P_{\mathrm{dBm}}=10\cdot\log(P_{\mathrm{W}}\cdot 1000)
+\end{equation}
+
+Omvänt kan vi också räkna om det enligt:
+
+\begin{equation}
+P_{\mathrm{W}}=\frac{10^{\mathrm{P_{dBm}}/10}}{1000}
+\end{equation}
+
+Där $P$ betecknar effekten i watt eller dBm och faktorn 1000 kommer med för det är milliwatt vi egentligen räknar om till och från dBm.
+
+\subsection{Utbredningen av en radiovåg}
+
+En radiovåg utbreder sig med ljusets hastighet egentligen i alla riktningar. Nu är de flesta antenner så konstruerade att de kraftigt undertrycker vissa riktningar och premierar andra. En handapparat med sin antennpinne på radion är i det närmaste rundstrålande men strålar inte uppåt och nedåt särskilt mycket. Normalt har man heller inte så stor användning för effekten åt dessa håll varför det verkar vettigt.
+
+Radiovågens effektdensitet kan ses som ytan hos en expanderande sfär. Den avtar därmed kvadratiskt med avståndet från sändaren och därmed är den effekt en mottagare kan ta mot omvänt proportionerlig mot kvadraten på avståndet.
+
+Låter det krångligt? Egentligen är det inte så märkligt, man kan säga att den mottagna effekten blir bara en fjärdedel om jag dubblar avståndet. Om jag tripplar avståndet blir den en niondel.
+
+I decibel säger vi att effekten sjunker med 6 dB varje gång vi fördubblar motståndet. Detta gör att om vi känner avståndet mellan sändare och mottagare kan vi beräkna den förlust som vi har på grund av utbredningen. Detta kallas normalt för \textit{sträckdämpningen} och kan relativt enkelt beräknas.
+
+\subsection{Sträckdämpning}
+
+Men det finns även andra faktorer som spelar in och som påverkar radiovågens styrka. Exempelvis blir antenner kortare med minskad våglängd (eller ökad frekvens) och det gör att den area som kan ta upp radiovågen också minskar. Så detta behöver vi ha med i formeln och det visar sig att den är också omvänt proportionell mot kvadraten på antennens längd.
+
+Slutligen så är det ju så att terrängen har betydelse. Om vi bara räknar med ovanstående parametrar så får vi något som kallas för \textit{free space path loss} alltså sträckdämpning i fria rymden. Eftersom vi befinner oss på marken med allt vad det innebär av terräng och blockeringar så måste vi även räkna med detta.
+
+Att få det exakt är mycket svårt och kräver simuleringsmodeller som är utanför det vi kommer gå igenom här. Däremot kan vi göra kvalificerade gissningar om vi känner våra radioapparaters effekter, mottagarens känsligheter, antennernas egenskaper och terrängen mellan.
+
+\subsection{Mottagarens känslighet}
+
+En mottagares känslighet är avgörande för hur bra man hörs. En mpottagare som lyssnar där det inte finns någon signal och har en öppen brusspärr hör egentligen det som brukar kallas för termiska bruset.
+
+Detta uppkommer på atomnivå när elektriskt laddade partiklar som elektroner utbyter fotoner med varandra. Det finns ett sätt att beräkna detta brus och det är temperaturberoende. Genom att räkna på detta i t.ex. rumstemperatur (20 grader C eller 300 K ungefär) får vi fram en förväntad bruseffekt.
+
+En radio behöver sedan en signal som är starkare än det bruset för att kunna demodulera signalen. För FM-radio av walkie-talkie typ så säger man att det behövs minimum 12 dB starkare signal än bruset.
+
+Vi kan beräkna bruset för en 25 kHz FM-kanal till ca -130 dBm. Om vi sedan lägger på 12 dB till detta samt en brusfaktor på 6 dB för mottagarens egenbrus så får vi -112 dBm. Detta är den känslighet en radio normalt har för FM-mottagning givet inga andra störningar. Sedan finns det ju mer eller mindre bra mottagare också, en del kan vara ganska mycket sämre som t.ex. de flesta enkla PMR446-apparater.
+
+På PR-bandet får man även räkna med en ganska stor mängd elektriska störningar och det kan även vara så i stadsmiljö på VHF och ibland även uppe på UHF-bandet.
+
+\subsection{Antennens egenskaper och kroppsdämpning}
+
+Antennen på radion har stor betydelse. De flesta handapparater har en enkel antennkonstruktion som kallas kvartsvågsantenn. Den är alltså ungefär 1/4 så lång som våglängden. 
+
+Många apparater använder samma antenn för flera frekvensband, den kan då vara mer eller mindre väl anpassad för dessa och det finns olika sätt tillverkarna gör för att få antennen bra på flera band.
+
+I datablad ser man ofta beteckningar på hur bra en antenn är och det finns två sätt att ange den så kallade antennvinsten: dBd och dBi.
+
+Det första begreppet dBd talar om hur mycket bättre (eller sämre) antennen är jämförd med en väl avstämd dipolantenn. Det andra sättet jämför med en teoretisk helt isotrop antenn som inte finns i verkligheten utan bara i tanken och i matematiska modeller. Det går att omvandla mellan dBd och dBi enligt följande:
+
+\begin{equation}
+G_{\mathrm{dBi}} = G_{dBd} + 2,15
+\end{equation}
+
+\begin{equation}
+G_{\mathrm{dBd}} = G_{dBi} - 2,15
+\end{equation}
+
+Beteckningen $G$ står för antennvinst (gain) i detta sammanhang.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Egenskaper hos olika band}
 
