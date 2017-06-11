@@ -1,6 +1,6 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = sv_SE
-\documentclass[10pt,swedish,a4paper]{report}
+\documentclass[12ypt,swedish,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 \usepackage[hidelinks]{hyperref}
@@ -395,9 +395,29 @@ Vid sändning underlättar det om man sänder sitt meddelande i ett svep, mottag
 
 Mer om detta i kapitel  \ref{kap:radiotrafik} om radiotrafik.
 
-\subsection{Polarisation}
+\section{Polarisation}
 
 \todo[inline]{Saknas helt}
+
+\section{Impedans}
+
+Impedansen är något som man normalt behöver gå igenom en del växelströmslära för att förstå ordentligt. Det skall vi inte göra här utan vi konstaterar att det finns olika impedanser för matarledningar.
+
+Den vanligaste matarledningen är koaxialkabeln. Den består av en innerledare som är omsluten av en skärmad återledare. Skärmen är normalt jordad vid radion och detta kallas för en obalanserad matarledning.
+
+I praktiken finns det två sorter i dag, 75 $\Omega$ (Ohm) impedans som används till exempel för kabel-TV och liknande. Alla radiosystem i dag använder sig av 50 $\Omega$ system. 
+
+För att effekten från antennen skall nå mottagaren ordentligt och för att effekten från sändaren skall nå antennen ordentligt är det viktigt att det är samma impedans i antennsystemet som i radions antennport.
+
+Om det inte är det får vi problem med att effekten inte hamnar i antennen på rätt sätt utan vi får reflektion av effekten vilket värmer upp slutsteget i onödan. Gamla apparater kan gå sönder av det, moderna har som regel skydd för det.
+
+Hur stor reflektion man har mäts antingen sin VSWR eller i \textit{return loss}. Den föra betyder \textit{voltage standing wave relation} och den andra mäts i dB som beskriver hur mycket effekt under den framåtgående som reflekteras.
+
+Stående vågen hos en antenn kan vara en indikation på att antennen fungerar som den skall eller inte. En hög stående våg indikerar som regel att något är fel. Antennen är kanske inte fullt anpassad för rätt frekvens.
+
+För att analysera ståpende vågen hos en antenn behövs i regel en antennanalysator eller ett instrument som kan mäta både den framåtgående och reflekterade effekten. 
+
+Ett sådant instrument är nödvändigt om man skall bygga egna antenner. Det finns enkla modeller att få tag i för ungefär en näve hundralappar och uppåt på Ebay och liknande ställen. En del säljs som byggsatser man själv bygger samman en del finns färdiga. Se till att skaffa en som klarar alla frekvensbanden som du tänkt använda.
 
 
 \section{Egenskaper hos olika band}
@@ -434,34 +454,45 @@ Därför upplever många det som att bandet \textit{går bättre} i stan medan m
 
 Det är också i UHF-bandet som vi finner de flesta fria PMR-frekvenserna som vi kan använda för att prata på lagligt. Därför är det rekommendabelt att försöka få kontakt på UHF först och VHF kan provas om UHF inte fungerar.
 
-%\chapter{Regler och förordningar}
-%
-%\section{Amatörradiobanden}
-%
-%\section{Privatradiobandet 27 MHz}
-%
-%\section{69 MHz-bandet}
-%
-%\section{PMR-band och andra fria frekvenser}
-%
-%\chapter{Radiotrafik}
-%\label{kap:radiotrafik}
-%
-%\section{Bokstavering}
-%
-%\section{Förkortningar och uttryck}
-%
-%\section{Utväxlande av meddelande}
-%
-%\section{Nödsamtal och viktiga meddelanden}
-%
-%
-%\chapter{Antennteori}
-%
-%\chapter{Frekvenslistor}
-%
-%\section{Krypterad radiotrafik}
-%
-%\todo[inline]{Krypterad trafik}
+\chapter{Regler och förordningar}
+
+\section{Amatörradiobanden}
+
+\section{Privatradiobandet 27 MHz}
+
+\section{69 MHz-bandet}
+
+\section{PMR-band och andra fria frekvenser}
+
+\chapter{Radiotrafik}
+\label{kap:radiotrafik}
+
+\section{Bokstavering}
+
+\section{Förkortningar och uttryck}
+
+\section{Utväxlande av meddelande}
+
+\section{Nödsamtal och viktiga meddelanden}
+
+
+
+
+
+
+
+\chapter{Antennteori}
+
+\chapter{Frekvenslistor}
+
+\section{Kanalbeteckningar}
+
+\subsection{VHF-bandet}
+
+\subsection{UHF-bandet}
+
+\section{Krypterad radiotrafik}
+
+\todo[inline]{Krypterad trafik}
 
 \end{document}
