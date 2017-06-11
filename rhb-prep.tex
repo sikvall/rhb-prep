@@ -9,10 +9,17 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 \usepackage{textcomp}
-\usepackage[scaled]{helvet}
-\renewcommand\familydefault{\sfdefault} 
+%\usepackage[scaled]{helvet}
+%\renewcommand\familydefault{\sfdefault} 
+%\usepackage{sansmath}
+
+\usepackage{palatino,eulervm}
+\linespread{1.03}
+
+
 \usepackage[T1]{fontenc}
 \usepackage{float}
+\usepackage[swedish]{todonotes}
 
 %\raggedbottom
 
@@ -37,8 +44,8 @@ För att nå riktigt långt behövs andra typer av kommunikationsutrustning. Då
 
 \tableofcontents
 
-\setlength{\parskip}{1ex}
-\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
 
 \chapter{Grundläggande radiokunskap}
 
@@ -74,9 +81,9 @@ f = \frac{300}{\lambda}
 \lambda = \frac{300}{f}
 \end{equation}
 
-Här betecknar $f$ frekvensen i MHz och $\lambda$ (lambda) våglängden i meter.
+Här betecknar $f$ frekvensen i MHz och $\lambda$ (lambda) våglängden i meter. 
 
-\begin{table}[H]
+\begin{table}[!h]
 	\begin{tabular}{llrr}
 		Frekvensband         & Beteckning &     Våglängd &      Frekvens \\ \hline
 		Långvåg              & LV         &     1--10 km &   300--30 kHz \\
@@ -115,7 +122,64 @@ Omvänt kan vi också räkna om det enligt:
 P_{\mathrm{W}}=\frac{10^{\mathrm{P_{dBm}}/10}}{1000}
 \end{equation}
 
-Där $P$ betecknar effekten i watt eller dBm och faktorn 1000 kommer med för det är milliwatt vi egentligen räknar om till och från dBm.
+Där $P$ betecknar effekten i watt eller dBm och faktorn 1000 kommer med för det är milliwatt vi egentligen räknar om till och från dBm. Se tabellerna \ref{tab:effekt-dbm} och \ref{tab:oversattning-w-dBm} för mer information och översättning mellan de båda enheterna.
+
+\begin{table}[!h]
+	\centering
+ 	\begin{tabular}{rr|rr}
+	      Watt & dBm &   Watt & dBm \\ \hline
+	      1 nW & -60 &  10 mW &  10 \\
+	     10 nW & -50 & 100 mw &  20 \\
+	    100 nW & -40 &    1 W &  30 \\
+	  1 $\mu$W & -30 &   10 W &  40 \\
+	 10 $\mu$W & -20 &  100 W &  50 \\
+	100 $\mu$W & -10 &   1 kW &  60 \\
+	      1 mW &   0 &  10 kW &  70
+	\end{tabular}
+	\caption{Effekt i W och dBm från små till stora effekter}
+	\label{tab:effekt-dbm}
+\end{table}
+
+\begin{table}[!hp]
+	\centering
+	\begin{tabular}{rr|rr}
+		Watt & dBm & dBm & Watt \\ \hline
+		   1 &  30 &  0   &  1 mW    \\
+		   2 &  33 &  1   &      \\
+		   3 &     &  2   &      \\
+		   4 &     &  3   &      \\
+		   5 &     &  4   &      \\
+		   6 &     &  5   &      \\
+		   7 &     &  6   &      \\
+		   8 &     &  7   &      \\
+		   9 &     &  8   &      \\
+		  10 &     &  9   &      \\
+		  15 &     &  10   &      \\
+		  20 &     &  15   &      \\
+		  25 &     &  20   &      \\
+		  30 &     &  35   &      \\
+		  40 &     &  30   &      \\
+		  50 &     &  35   &      \\
+		  60 &     &  40   &      \\
+		  70 &     &  45   &      \\
+		  80 &     &  50   &      \\
+		  90 &     &     &      \\
+		 100 &     &     &
+	\end{tabular}
+	\caption{Översättning mellan Watt och dBm}
+	\label{tab:oversattning-w-dBm}
+	\todo[inline]{Inte färdig tabell}
+\end{table}
+
+\subsubsection{Räkna decibel i huvudet}
+
+För att underlätta förståelsen och att räkna med decibel så finns det ett antal trick man kan komma ihål. Varje 10 dB är en tiodubbling. Varje -10 dB är en tiondel. I dBm utgår vi från 1 mW. Eftersom 1 W är 1000 gånger 1 mW innebär det att det är tre 10-dubblingar och det blir därför $10+10+10=30$ dBm.
+
+3 dB är en fördubbling och -3 dB är en halvering. För att berälna hur många watt 43 dBm är så kan vi tänka oss följande: 1 W är 30 dBm. 10 dB till betyder gånger 10 alltså är det 10 W. 3 dB på det är en fördubbling. Alltså är 43 dBm lika med 20 W. 
+
+Vi kan också minnas att 1 dB är ungefär 20\% mer och -1 dB är ungefär 20\% mindre. Nu har vi verktygen att stega i steg om 10 / 10 dBm, i steg om 2 / 3 dB och i steg om 1.2 / 1 dB.
+
+Beräkna hur många dBm en radio på 5 W har. Vi vet att 1 W = 30 dBm och om vi fördubblar till 2 W blir det 33 dBm. Fördubblar vi igen blir det 4 W och 36 dBm. 5 W är ungefär 20\% mer än 4 W så vi lägger till 1 dB och får 37 dBm vilket är mycket nära det exakta svaret.
 
 \subsection{Utbredningen av en radiovåg}
 
@@ -147,11 +211,15 @@ Vi kan beräkna bruset för en 25 kHz FM-kanal till ca -130 dBm. Om vi sedan lä
 
 På PR-bandet får man även räkna med en ganska stor mängd elektriska störningar och det kan även vara så i stadsmiljö på VHF och ibland även uppe på UHF-bandet.
 
+Vi sammanfattar med att i bästa fall är känsligheten hos en vanlig FM-komradiomottagare ca \textbf{-112 dBm}. Detta skall vi lägga på minnet.
+
 \subsection{Antennens egenskaper och kroppsdämpning}
 
 Antennen på radion har stor betydelse. De flesta handapparater har en enkel antennkonstruktion som kallas kvartsvågsantenn. Den är alltså ungefär 1/4 så lång som våglängden. 
 
 Många apparater använder samma antenn för flera frekvensband, den kan då vara mer eller mindre väl anpassad för dessa och det finns olika sätt tillverkarna gör för att få antennen bra på flera band.
+
+\subsubsection{Antennvinst}
 
 I datablad ser man ofta beteckningar på hur bra en antenn är och det finns två sätt att ange den så kallade antennvinsten: dBd och dBi.
 
@@ -167,30 +235,136 @@ G_{\mathrm{dBd}} = G_{dBi} - 2,15
 
 Beteckningen $G$ står för antennvinst (gain) i detta sammanhang. Antennvinsten beror på att antennen inte strålar likvärdigt i alla riktninar. En dipolantenn strålar ungefär som en torus (tänk dig en frityrmunk) och strålar alltså inte ut från ändarna utan det är bredsidan på antennen som strålar mest. Denna \textit{sammantryckning} av strålningsdiagrammet ökar effekten i vissa riktningt.
 
+\subsubsection{Antennens riktverkan ger antennvinsten}
+
 Detta är det som avses med antennvinsten. En del riktantenner kan ha väldigt hög antennvinst, vanliga antenner på walkie-talkies brukar ha några dB. Om en antenn görs lång och med speciella trick kan man trycka ihop strålningsloberna ännu mer och då får man en högre antennvinst.
 
 Dock blir den ocskå mer och mer riktningskänslig och det blir noga med riktning och placering av antennen. Exempel på antenner med hög antennvinst och stor känslighet är till exempel parabolantenner. Exempel på antenner med inte lika hög antennvinst och riktningskänslighet är vanliga tv-antenner.
 
-Ett varningens ord också för antenntillverkare i främst asien som ofta kommer med riktiga glädjesiffror och heller inte skriver ut om det är dBd eller dBi.
+\subsubsection{Antennvinst i reklamen}
+
+Ett varningens ord också för antenntillverkare i främst asien som ofta kommer med riktiga glädjesiffror och heller inte skriver ut om det är dBd eller dBi. Strunta i dessa siffror, de är inte relevanta. Alla enkla antenner som är baserade på en dipol ligger runt ca 2 dBi i antennvinst. 
+
+Hos en handhållen radio med 1/4-vågsantenn är antennvinsten i praktiken inte mer än någon dB. För en fritt hängande dipol är den 2,15 dBi. De flesta enkla antenner ligger däromkring. Kolinjära eller på annat vis stackade antenner kan komma upp i några dB till i antennvinst.
+
+\subsection{Kroppsdämpning}
+
+När vi står nära en antenn, som vi gör med en handhållen radio, befinner vi oss i antennens strålningsfält. Detta gör att vi påverkar hur antennen fungerar och det är i princip aldrig vi gör den bättre. 
+
+Detta brukar benämnas som kroppsdämpning, \textit{eng. Body Loss}, och gör att antennen fungerar sämre än den annars skulle ha gjort. En frihängande antenn däremot exempelvis en dipolantenn eller någon av dess varianter som en \textit{Slim Jim} kan man räkna utan kroppsdämpning.
+
+För antenner som matas med koaxialkabel så räknar man i stället för kroppsdämpning med förlusten i matarkabeln. 
+
+Kroppsdämpningen är oftast i storleksordningen 1-3 dB och dras från antennvinsten när man skall beräkna utbredningen. Det gör att vi i de flesta fall kan betrakta handhållen radio som 0 dBi i den bästa riktningen.
 
 
+\subsection{Terrängens påverkan}
 
+Terrängen påverkar landmobil radio något oerhört. Vi kan med lätthet säga att den påverkan är större än några av de andra delarna som vi hittills har gått igenom. När man pratar i handburen radio får man vara beredd på att göra små förflyttningar fram och tillbaka för att hitta en plats där det fungerar bra.
 
+Man skall inte ha radion i bältet och använda lös mikrofon. Även om detta kan verka coolt och fint sjunker verkningsgraden rejält. Dels ligger radions antenn mot kroppen i det närmaste och den skärmar. En annan sak som händer är att antennen på en handhållen radio behöver en motpol. När du håller i radion är du motpolen och förbättrar verkningsgraden, när den hänger i bältet blir detta sämre.
 
+Håll antennan förhållandelsevis rakt up. Polarisationen av radiovågorna är av betydelse. Ibland kan man vicka på radion $\pm$45 grader och på så vis förbättra förhållandena. När du hittat ett bra läge stå still.
 
+\subsubsection{Terräng och val av frekvensband}
 
+I terrängen finns det kullar och berg, klippor, fält och sjöar och andra saker som påverkar utbredningen. Nära vatten kan radiovågen gå mycket bra över vattenytan, i skog och mark med tätt mellan träden och steniga kullar dämpas signalen mycket mer.
 
+Generellt sett utbreder sig VHF bättre i skog och mark och över vatten än UHF gör. Dock är antalet kanaler som vi kan nyttja lagligen begränsade i bandet även om det på senare tid kommit flera frekvenser som är tillåtna att användas.
 
+Här ligger också de så kallade jaktkanalerna på 150 MHz-bandet av samma anledning.
 
+I bebyggelse dämpar husen också liskom i urban miljö de stora husen. Här kan man ibland nyttja att högre frekvenser reflekterar sig bättre mellan hus och glasrutor och man kan därför ha större chans att komma fram på UHF än på VHF
 
+På UHF finner vi de flesta kanalerna på 400 MHz-bandet och att det är väl använta i urban miljö förstår vi då exempelvis bilräddningskåren, väktarbolagen, taxi med flera ofta använder detta band. Det finns också ett större frekvensutrymme för egna kanaler i detta band och för PMR-radio finns det flera olika frekvenser upplåtna.
 
+Som prepper bör UHF vara förstahandsvalet i urban miljö medan VHF kommer till sin rätt ordentligt i glesbygden och framför allt i skogen.
 
+\subsubsection{Terrängfaktorn i utbredningsformeln}
 
+Om vi skall kunna beräkna utbredningen behöver vi kunna hantera terrängen på något sätt, detta gör vi med en terrängfaktor. Terrängfaktorn väljs enligt följande:
 
+\begin{table}[h]
+\centering
+\begin{tabular}{rl}
+	Faktor & Terrängbeskrivning                            \\ \hline
+	     0 & Fri rymd, förekommer i det närmaste inte      \\
+	     5 & Flack terräng eller utbredning över vatten    \\
+	    10 & Bebyggd glesbygd eller kulligare terräng      \\
+	    15 & Tät bebyggelse eller bergig terräng           \\
+	    20 & Mycket urban bebyggelse, extremt svår terräng \\
+	    25 & Torr stenöken
+\end{tabular}
+\caption{Terrängfaktorn}
+\end{table}
 
+\subsection{Beräkning av räckvidden}
 
+Nu har vi tillräckligt med information för att kunna beräkna vilken signalnivå som en mottagare placerad på ett visst avstånd från en sändare i en given terräng, på ett känt frekvensband och med de antennegenskaper vi känner göra en hygglig beräkning på om det fungerar eller inte.
 
+Vi börjar med formeln för utbredning:
 
+\begin{equation}
+L_P = 20\cdot\log(f)+(20+K)\cdot\log(d)+32,45
+\end{equation}
+
+Här finner vi att $L_P$ är sträckdäpningen (\textit{Path Loss}) $f$ är frekvensen i MHz och $d$ är avståndet i km. Faktorn 32,45 är utbredningen som en area på en sfär och omräknat till decibel och justerat för kilometer. Om man föredrar att räkna i mil ändrar man faktorn till +52,45 i stället och om man föredrar i meter blir den -27,55.
+
+Faktorn $K$ terrängfaktorn som vi normalt väljer meöölan 5--15 ungefär beroende på hur tuff terrängen är för radiovågen.
+
+Vi beräknar sedan egenskaperna hos sändaren och mottagaren:
+
+\subsubsection{Sändaren}
+
+För sändaren är det den effektivt isotropt utstrålade effekten vi vill ha (EIRP) och den beräknar vi genom följande:
+
+\begin{equation}
+P_{\mathrm{EIRP}}=P_{\mathrm{TX}} + G_{\mathrm{dBi}} - L_{\mathrm{body}}
+\end{equation}
+
+Om vi så antar en radio på 5 W vilket är 37 dBm och en antennvinst på 2 dB samt en kroppsförlust på 2 dB så får vi följande:
+
+\begin{equation}
+P_{\mathrm{EIRP}}=37 + 2 - 2 = 37
+\end{equation}
+
+Utstrålad effekt är alltså 37 dBm EIRP.
+
+\subsubsection{Mottagaren}
+
+Vi kan konstatera att mottagarens känslighet är ca -112 dBm. Vi gör en liknande beräkning här och antennvinsten förbättrar känsligheten (ger lägre värde) och kroppsdämpningen försämrar den (ger högre värde). 
+
+Eftersom kroppsdämpningen och antennvinsten verkar ta ungefär ut varandra kan vi använda -112 dBm direkt.
+
+Tänk på att detta gäller endast FM-mottagning och vid en bandbredd på ca 25 kHz (normal komradio-FM).
+
+\subsubsection{Totala sträckdämpningen}
+
+Den totala maximala sträckdämpningen kan nu beräknas som skillnaden av dessa två tal:
+
+\begin{equation}
+L_{\mathrm{max}} = P_{\mathrm{TX}} - S_{\mathrm{RX}}
+\end{equation}
+
+I exemplet ovan får vi:
+
+\begin{equation}
+L_{\mathrm{max}} = 37 - (-112) = 149
+\end{equation}
+
+Nu vet vi att vi kan inte överskrida detta tal i sträckdämpning för då kommer inte radioföbindelsen fungera. Nu kan vi sätta i det där i den totala formeln och kontrollera om vi kan höra varandra på 5 km håll i medelsvår terräng på frekvensen 156,000 MHz.
+
+Vi väljer terrängfaktorn 15 för denna beräkning.
+
+\subsubsection{Slutför beräkningen}
+
+\begin{equation}
+L_P=20\cdot\log(156)+(20+10)\cdot\log(5)+32,45 = 43,9 + 21,0 + 32,45 = 97,35
+\end{equation}
+
+Om inga andra störningar finns så bör förbindelsen kunna fungera. Observera att detta gäller endast när både sändare och mottagare befinner sig på relativt höga och fria positioner mot omgivningen. 
+
+Är man nere i terränglådan kan förbindelserna förkortas avsevärt.
 
 \section{Egenskaper hos olika band}
 
