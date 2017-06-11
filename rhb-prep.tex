@@ -1,6 +1,6 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = sv_SE
-\documentclass[12pt,swedish,a4paper,twoside]{book}
+\documentclass[12pt,swedish,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 \usepackage[hidelinks]{hyperref}
@@ -12,6 +12,7 @@
 \usepackage[scaled]{helvet}
 \renewcommand\familydefault{\sfdefault} 
 \usepackage[T1]{fontenc}
+\usepackage{float}
 
 \raggedbottom
 
@@ -32,12 +33,9 @@ Vi kommer också att titta på några enkla antennkonstruktioner eller färdigk�
 
 För att nå riktigt långt behövs andra typer av kommunikationsutrustning. Då pratar vi mellanvåg (MF) eller kortvåg (HF) med flera olika band. Ett kapitel i handboken kommer ta upp detta och var man kan söka sig för att få mer information och ta ett amatörradiocertifikat vilket är nödvändigt.
 
-
-
 \clearpage
 
 \tableofcontents
-
 
 \setlength{\parskip}{1ex}
 \setlength{\parindent}{1em}
@@ -52,7 +50,48 @@ Radiovågor i sig är elektromagnetiska till sin natur. Detta betyder att de har
 
 Radiovågen är en sorts elektromagnetisk strålning. En del människor är rädda för strålning men man skall komma ihåg att det finns två sorters elektromagnetisk strålning, så kallad joniserande strålning och icke-joniserande strålning. Om en elektromagnetisk våg är joniserande eller inte bestäms enbart av dess frekvens och för att bli joniserande måste frekvensen vara mycket hög, högre än synligt ljus vilket radiovågor inte är. Radiovågor är alltså icke-joniserande och skall därför inte blandas ihop med radioaktiv strålning.
 
+En radiovåg kan orsaka uppvärmning, det är ju så till exempel mikrovågsugnar arbetar, med tillräcklig effekt på radiosignalen kan den orsaka uppvärmning av vävnader. Med de effekter som vanliga handapparater har, upp till några watt är det ingen fara. Större stationer som amatörradiostationer kan ha flera hundra till tusentals watt och måste hanteras därefter för att man inte skall orsaka problem.
 
+Radiofrekventa vågor (RF) kan också orsaka brännskador redan från någon enstaka watt om man till exempel tar i änden på vissa antenntyper eller håller i en kontakt och sänder samtidigt. Så länge som sändaren inte aktiveras är det dock ingen fara men tänk på att inte sända om ni måste justera en antenn, särskilt gäller detta hemmabyggda antenner.
+
+När man talar om radiovågor talar man framför allt om två storheter. Det ena är frekvensen och det andra är effekten. Ibland talar man ocskå om våglängden men den är egentligen samma sak som frekvensen.
+
+\subsection{Frekvens och våglängd}
+
+En radiovågs frekvens beskriver hur många svängningar per sekund som en radiovåg gör. En sändare alstrar en växelström precis som den växelström vi har i ett vägguttag så har den en frekvens. Strömmen i vägguttaget har en frekvens om 50 Hz vilket betyder att den når sitt största värde 50 ggr per sekund och även sitt lägsta värde 50 ggr per sekund. 
+
+En radiosändare arbetar med mycket högre frekvenser. Från kHz (kilohertz = 1\,000 Hz) och MHz (megahertz = 1\,000\,000 Hz). För oss ligger de mest praktiska frekvenserna i området från ca 1--400 MHz ungefär.
+
+Våglängden beskriver hur långt det är mellan två toppar i svängningen på växelströmmen. Den kan härledas från frekvensen om man vet utbredningshastigheten hos radiovågen och det vet vi, den är ljusets hastighet, ca 300 000 km/s.
+
+Då kan vi skriva följande formel för att översätta mellan våglängd och frekvens:
+
+\begin{equation}
+f = \frac{300}{\lambda}
+\end{equation}
+
+\begin{equation}
+\lambda = \frac{300}{f}
+\end{equation}
+
+Här betecknar $f$ frekvensen i MHz och $\lambda$ våglängden i meter.
+
+\begin{table}[H]
+	\begin{tabular}{llrr}
+		Frekvensband         & Beteckning &     Våglängd &      Frekvens \\ \hline
+		Långvåg              & LV         &     1--10 km &   300--30 kHz \\
+		Mellanvåg            & MV         &  100--1000 m & 3000--300 kHz \\
+		Kortvåg              & KV         &    10--100 m &     3--30 MHz \\
+		Ultrakortvåg         & UKV/VHF    &      1--10 m &   30--300 MHz \\
+		Ultrahög frekvens    & UHF        & 100--1000 mm & 300--3000 MHz \\
+		Superhög frekvens    & SHF        &  100-1000 mm &     3--30 GHz \\
+		Extremt hög frekvens & EHF        &    10-100 mm &   30--300 GHz
+	\end{tabular}
+	\caption{Frekvenser och våglängder vanligaste banden}
+	\label{tab:frekvens-vaglangd}
+\end{table}
+
+Tabellen \ref{tab:frekvens-vaglangd} är de generiska benämningar på frekvensbanden som internationella teleunionen (ITU) har fastslagit. Det finns traditionellt andra benämningar också som vi inte kommer gå in på i detalj men rundradiobanden för lång- mellan- och kortvåg följer inte detta slaviskt och för amatörradion brukar 160 m bandet (1\,800--2\,000 kHz) räknas som kortvåg fast det i strikt mening är mellanvåg eller gränsvåg som området mellan 1--3 MHz kallas i marina sammanhang.
 
 \section{Effekt och räckvidd}
 
@@ -62,19 +101,26 @@ Radiovågen är en sorts elektromagnetisk strålning. En del människor är räd
 
 \subsection{UHF}
 
-\chapter{Bokstavering och förkortningar}
+\chapter{Regler och förordningar}
 
+\section{Amatörradiobanden}
+
+\section{Privatradiobandet 27 MHz}
+
+\section{69 MHz-bandet}
+
+\section{PMR-band och andra fria frekvenser}
 
 \chapter{Radiotrafik}
 
+\section{Bokstavering}
+
+\chapter{Radiotrafik}
+
+\section{Förkortningar och uttryck}
+
 \section{Utväxlande av meddelande}
 
-\clearpage
-\tableofcontents
-\clearpage
+\section{Nödsamtal och viktiga meddelanden}
 
-\setlength{\parskip}{0.5em}
-\setlength{\parindent}{0pt}
-
-%\input{body}
 \end{document}
