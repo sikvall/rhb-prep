@@ -121,6 +121,30 @@ Vi kan också minnas att 1 dB är ungefär 20\% mer och -1 dB är ungefär 20\% 
 
 Beräkna hur många dBm en radio på 5 W har. Vi vet att 1 W = 30 dBm och om vi fördubblar till 2 W blir det 33 dBm. Fördubblar vi igen blir det 4 W och 36 dBm. 5 W är ungefär 20\% mer än 4 W så vi lägger till 1 dB och får 37 dBm vilket är mycket nära det exakta svaret.
 
+\subsubsection{Decibel och faktorer}
+
+Omvandlingen mellan decibel och faktorer och tvärt om är kanske överkurs men bra ändå att känna till. Det man kan läsa ut ur denna tabell är att 7 dB upp innebär en ökning av effekt med 5,01 gånger.
+
+Likaså kan man läsa att om man delar effekten på tre vägar får varje väg 4,72 dB lägre effekt.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{rr|rr}
+		dB & Faktor & Faktor &    dB \\ \hline
+		 0 &   1,00 &        &       \\
+		 1 &   1,26 &      1 &  0,00 \\
+		 2 &   1,58 &      2 &  3,01 \\
+		 3 &   2,00 &      3 &  4,72 \\
+		 4 &   2,51 &      4 &  6,02 \\
+		 5 &   3,16 &      5 &  6,99 \\
+		 6 &   3,98 &      6 &  7,78 \\
+		 7 &   5,01 &      7 &  8,45 \\
+		 8 &   6,31 &      8 &  9,03 \\
+		 9 &   7,94 &      9 &  9,54 \\
+		10 &  10,00 &     10 & 10,00
+	\end{tabular}
+\end{table}
+
 \subsection{Utbredningen av en radiovåg}
 
 En radiovåg utbreder sig med ljusets hastighet egentligen i alla riktningar. Nu är de flesta antenner så konstruerade att de kraftigt undertrycker vissa riktningar och premierar andra. En handapparat med sin antennpinne på radion är i det närmaste rundstrålande men strålar inte uppåt och nedåt särskilt mycket. Normalt har man heller inte så stor användning för effekten åt dessa håll varför det verkar vettigt.
@@ -151,7 +175,7 @@ Vi kan beräkna bruset för en 25 kHz FM-kanal till ca -130 dBm. Om vi sedan lä
 
 På PR-bandet får man även räkna med en ganska stor mängd elektriska störningar och det kan även vara så i stadsmiljö på VHF och ibland även uppe på UHF-bandet.
 
-Vi sammanfattar med att i bästa fall är känsligheten hos en vanlig FM-komradiomottagare ca \textbf{-112 dBm}. Detta skall vi lägga på minnet.
+Vi sammanfattar med att i bästa fall är känsligheten hos en vanlig FM-kom\-ra\-di\-o\-mot\-ta\-ga\-re ca \textbf{-112 dBm}. Detta skall vi lägga på minnet.
 
 \subsection{Antennens egenskaper och kroppsdämpning}
 
