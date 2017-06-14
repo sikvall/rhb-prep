@@ -7,3 +7,6 @@
 rhb-prep.aux
 *.tdo
 rhb-prep.tdo
+*.tdo
+*.synctex(busy)
+*.tdo
