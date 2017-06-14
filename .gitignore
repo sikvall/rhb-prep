@@ -4,10 +4,6 @@
 *.out
 *.gz
 *.toc
-rhb-prep.aux
+*.aux
 *.tdo
-rhb-prep.tdo
-*.tdo
-*.synctex(busy)
-*.tdo
-*.tdo
+*.synctex*
